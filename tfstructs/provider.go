@@ -271,7 +271,7 @@ func (c *Client) GetResourceTypes() ([]string, error) {
 	res := c.provider.GetSchema()
 	var result []string
 
-	for k, _ := range res.ResourceTypes {
+	for k := range res.ResourceTypes {
 		result = append(result, k)
 	}
 	return result, nil
@@ -282,7 +282,7 @@ func (c *Client) GetDataSourceTypes() ([]string, error) {
 	res := c.provider.GetSchema()
 	var result []string
 
-	for k, _ := range res.DataSources {
+	for k := range res.DataSources {
 		result = append(result, k)
 	}
 	return result, nil
