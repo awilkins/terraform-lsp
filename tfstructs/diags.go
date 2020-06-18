@@ -222,15 +222,13 @@ func localDiags(locals []*configs.Local, originalFileName string, variables map[
 	for _, local := range locals {
 		diags := GetLocalsForDiags(*local, filepath.Dir(originalFileName), variables)
 
-		if diags != nil {
-			for _, diag := range diags {
-				result = append(result, lsp.Diagnostic{
-					Severity: lsp.DiagnosticSeverity(diag.Severity),
-					Message:  diag.Detail,
-					Range:    rangeOf(*diag.Subject),
-					Source:   "Terraform Schema",
-				})
-			}
+		for _, diag := range diags {
+			result = append(result, lsp.Diagnostic{
+				Severity: lsp.DiagnosticSeverity(diag.Severity),
+				Message:  diag.Detail,
+				Range:    rangeOf(*diag.Subject),
+				Source:   "Terraform Schema",
+			})
 		}
 	}
 
