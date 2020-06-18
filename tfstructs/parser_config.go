@@ -2,6 +2,9 @@ package tfstructs
 
 import (
 	"fmt"
+	"reflect"
+	"strings"
+
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/hashicorp/terraform/configs"
@@ -10,8 +13,6 @@ import (
 	"github.com/juliosueiras/terraform-lsp/helper"
 	"github.com/sourcegraph/go-lsp"
 	"github.com/zclconf/go-cty/cty"
-	"reflect"
-	"strings"
 )
 
 func GetNestingAttributeCompletion(attr *hcl.Attribute, result []lsp.CompletionItem, configType string, origConfig interface{}, fileDir string, posHCL hcl.Pos, origType reflect.Type) (lsp.CompletionList, bool, error) {
@@ -664,31 +665,31 @@ func GetNestingCompletion(blocks []*hcl.Block, result []lsp.CompletionItem, conf
 
 func GetTopLevelCompletion() []lsp.CompletionItem {
 	return []lsp.CompletionItem{
-		lsp.CompletionItem{
+		{
 			Label:  "resource",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "data",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "module",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "output",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "variable",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "provider",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "terraform",
 			Detail: " type",
 		},
@@ -698,7 +699,7 @@ func GetTopLevelCompletion() []lsp.CompletionItem {
 
 func GetTopLevelCompletionWithPos(pos hcl.Pos) []lsp.CompletionItem {
 	return []lsp.CompletionItem{
-		lsp.CompletionItem{
+		{
 			Label:            "resource",
 			Kind:             lsp.CIKField,
 			Detail:           " type",
@@ -707,7 +708,7 @@ func GetTopLevelCompletionWithPos(pos hcl.Pos) []lsp.CompletionItem {
   ${3}
 }`,
 		},
-		lsp.CompletionItem{
+		{
 			Label:            "data",
 			Kind:             lsp.CIKField,
 			Detail:           " type",
@@ -716,23 +717,23 @@ func GetTopLevelCompletionWithPos(pos hcl.Pos) []lsp.CompletionItem {
   ${3}
 }`,
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "module",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "output",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "variable",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "provider",
 			Detail: " type",
 		},
-		lsp.CompletionItem{
+		{
 			Label:  "terraform",
 			Detail: " type",
 		},
