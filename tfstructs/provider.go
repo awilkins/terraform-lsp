@@ -2,9 +2,8 @@
 package tfstructs
 
 import (
-	"fmt"
-	//log "github.com/sirupsen/logrus"
 	"encoding/json"
+	"fmt"
 	"go/build"
 	"io/ioutil"
 	oldLog "log"
@@ -14,6 +13,8 @@ import (
 	"reflect"
 	"runtime"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
 
 	internalPlugin "github.com/hashicorp/go-plugin"
 	"github.com/hashicorp/terraform/plugin"
@@ -191,7 +192,7 @@ func pluginDirs(targetDir string) ([]string, error) {
 
 	for dir := targetDir; dir != "" && searchLevel != 0; dir = filepath.Dir(dir) {
 
-		//log.Debug("[DEBUG] search .terraform dir in %s", dir)
+		log.Debugf("[DEBUG] search .terraform dir in %s", dir)
 
 		if _, err := os.Stat(filepath.Join(dir, ".terraform")); err == nil {
 			autoInstalledDir = filepath.Join(dir, ".terraform", "plugins", arch)
@@ -235,7 +236,7 @@ func pluginDirs(targetDir string) ([]string, error) {
 	gopath := build.Default.GOPATH
 	dirs = append(dirs, filepath.Join(gopath, "bin"))
 
-	//log.Debug("[DEBUG] plugin dirs: %#v", dirs)
+	log.Debugf("[DEBUG] plugin dirs: %#v", dirs)
 	return dirs, nil
 }
 
